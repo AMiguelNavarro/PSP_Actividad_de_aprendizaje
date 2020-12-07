@@ -1,5 +1,6 @@
 package com.svalero.gestordescargas.hilo;
 
+import com.svalero.gestordescargas.utilidades.Alertas;
 import javafx.concurrent.Task;
 
 import java.io.BufferedInputStream;
@@ -51,6 +52,12 @@ public class DescargaTask extends Task<Integer> {
 
             fileOutputStream.write(dataBuffer, 0, bytesLeidos);
             totalLeido += bytesLeidos;
+
+            // Si se pulsa parar entra en este if
+            if (isCancelled()) {
+                return null;
+            }
+
         }
 
         // Descarga completada en barra progreso

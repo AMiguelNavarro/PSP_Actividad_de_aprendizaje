@@ -23,6 +23,7 @@ public class Descarga_Controlador {
     public Button btParar, btEliminar, btIniciar;
 
     private String url;
+    private DescargaTask descargaTask;
 
 
     /**
@@ -45,6 +46,9 @@ public class Descarga_Controlador {
     @FXML
     public void pararDescarga(Event event) {
 
+        // Envia una orden de cancelacion a la clase DescargaTask
+        descargaTask.cancel();
+
     }
 
     @FXML
@@ -56,7 +60,7 @@ public class Descarga_Controlador {
             FileChooser fileChooser = new FileChooser();
             File file = fileChooser.showSaveDialog(null);
 
-            DescargaTask descargaTask = new DescargaTask(url, file);
+            descargaTask = new DescargaTask(url, file);
 
 
             // Permite acceder al progreso de la tarea
@@ -74,6 +78,11 @@ public class Descarga_Controlador {
                 // Aquí lo que quiero que haga cuando cambie algo de la tarea
                 if (estadoNuevo == Worker.State.SUCCEEDED) {
                     Alertas.mostrarInformacion("La descarga ha finalizado");
+                }
+
+                // Si el estado es cancelado muestra la alerta
+                if (estadoNuevo == Worker.State.CANCELLED) {
+                    Alertas.mostrarInformacion("Descarga parada");
                 }
 
             });
