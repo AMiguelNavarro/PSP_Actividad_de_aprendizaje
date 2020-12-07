@@ -47,6 +47,7 @@ public class DescargaTask extends Task<Integer> {
             progresoDescarga = ((double) totalLeido / tamañoTotalFichero);
 
             updateProgress(progresoDescarga,1);
+            updateMessage(Math.round(progresoDescarga * 100)+ " %");
 
             fileOutputStream.write(dataBuffer, 0, bytesLeidos);
             totalLeido += bytesLeidos;
@@ -54,6 +55,7 @@ public class DescargaTask extends Task<Integer> {
 
         // Descarga completada en barra progreso
         updateProgress(0,1);
+        updateMessage("100%");
 
         return null;
     }

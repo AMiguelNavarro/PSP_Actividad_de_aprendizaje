@@ -11,7 +11,7 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Label layoutX="33.0" layoutY="29.0" text="Descargando ..." />
+            <Label layoutX="33.0" layoutY="29.0" text="url descarga --&gt;" />
             <ProgressBar fx:id="pbProgreso" layoutX="33.0" layoutY="61.0" prefHeight="18.0" prefWidth="442.0" progress="0.0" />
             <Label fx:id="lbURL" layoutX="127.0" layoutY="29.0" prefHeight="18.0" prefWidth="442.0" text="URL" />
             <Label fx:id="lbVelocidad" layoutX="488.0" layoutY="61.0" text="MB/s" />

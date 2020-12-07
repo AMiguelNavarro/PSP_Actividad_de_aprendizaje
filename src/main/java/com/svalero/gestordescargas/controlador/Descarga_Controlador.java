@@ -31,6 +31,7 @@ public class Descarga_Controlador {
      */
     public Descarga_Controlador(String url) {
         this.url = url;
+
     }
 
 
@@ -57,18 +58,29 @@ public class Descarga_Controlador {
 
             DescargaTask descargaTask = new DescargaTask(url, file);
 
+
+            // Permite acceder al progreso de la tarea
             pbProgreso.progressProperty().unbind();
             // Vinculo la barra de progreso al progreso de la tarea
             pbProgreso.progressProperty().bind(descargaTask.progressProperty());
 
+
+
             // Cada vez que el hilo tiene un cambio lo avisa con el listener
             // Compactado con lambda
+            // Permite acceder al estado de la tarea
             descargaTask.stateProperty().addListener((observableValue, estadoAntiguo, estadoNuevo) -> {
 
                 // Aquí lo que quiero que haga cuando cambie algo de la tarea
                 if (estadoNuevo == Worker.State.SUCCEEDED) {
                     Alertas.mostrarInformacion("La descarga ha finalizado");
                 }
+
+            });
+
+            descargaTask.messageProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> {
+
+                lbPorcentaje.setText(valorNuevo);
 
             });
 
