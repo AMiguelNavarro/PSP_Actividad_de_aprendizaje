@@ -26,6 +26,8 @@
                   <VBox fx:id="layout" prefHeight="268.0" prefWidth="654.0" />
                </content>
             </ScrollPane>
+            <Button fx:id="btPararTodas" layoutX="457.0" layoutY="395.0" mnemonicParsing="false" onAction="#pararTodasLasDescargas" text="Parar Todas" />
+            <Button fx:id="btEliminarTodas1" layoutX="583.0" layoutY="395.0" mnemonicParsing="false" onAction="#eliminarTodasLasDescargas" text="Eliminar Todas " />
          </children>
       </AnchorPane>
    </children>

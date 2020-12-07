@@ -108,4 +108,9 @@ public class Descarga_Controlador {
         lbURL.setText(url);
     }
 
+    public void pararTodasLasDescargas() {
+
+        descargaTask.cancel();
+
+    }
 }

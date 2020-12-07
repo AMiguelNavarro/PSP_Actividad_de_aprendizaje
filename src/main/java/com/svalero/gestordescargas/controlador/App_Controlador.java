@@ -13,16 +13,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class App_Controlador {
 
     public TextField tfURL;
-    public Button btDescargar;
+    public Button btDescargar, btPararTodas, btEliminarTodas;
     public ScrollPane spDescargas;
     public Label lbNumDescargas;
     public VBox layout;
 
     private int contador = 0;
+    private ArrayList<Descarga_Controlador> listaControladoresDescarga = new ArrayList<Descarga_Controlador>();
 
 
 
@@ -50,6 +52,8 @@ public class App_Controlador {
 
             layout.getChildren().add(descarga);
 
+            listaControladoresDescarga.add(controlador);
+
             aumentarContador();
 
         } catch (IOException e) {
@@ -57,6 +61,26 @@ public class App_Controlador {
         }
 
 
+    }
+
+
+    /**
+     * Elimina todas las descargas del scrollPane
+     */
+    @FXML
+    public void pararTodasLasDescargas() {
+        for (Descarga_Controlador controlador : listaControladoresDescarga) {
+            controlador.pararTodasLasDescargas();
+        }
+    }
+
+
+    /**
+     * Para todas las descargas
+     */
+    @FXML
+    public void eliminarTodasLasDescargas() {
+        layout.getChildren().clear();
     }
 
 
