@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,6 +22,9 @@ public class App_Controlador {
     public Button btDescargar;
     public ScrollPane spDescargas;
     public Label lbNumDescargas;
+    public VBox layout;
+
+    private int contador = 0;
 
 
 
@@ -32,20 +36,24 @@ public class App_Controlador {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(R.getURL("descarga.fxml"));
 
-            Descarga_Controller controlador = new Descarga_Controller();
+            Descarga_Controlador controlador = new Descarga_Controlador();
             loader.setController(controlador);
 
-            Parent root = loader.load();
+            Parent descarga = loader.load();
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
+            layout.getChildren().add(descarga);
 
         } catch (IOException e) {
-            Alertas.mostrarError("Error al cargar la ventana de descarga");
+            Alertas.mostrarError("Error al cargar la ventana de descarga " + e.getMessage());
         }
+
+
     }
 
+
+
+    public void aumentarContador() {
+        contador++;
+    }
 
 }

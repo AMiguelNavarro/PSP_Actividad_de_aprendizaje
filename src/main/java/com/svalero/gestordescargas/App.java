@@ -25,6 +25,8 @@ public class App extends Application {
         App_Controlador controlador = new App_Controlador();
         loader.setController(controlador);
 
+//        controlador.aumentarContador(); // +1 al contador
+
         Parent root = loader.load();
 
         Scene scene = new Scene(root);

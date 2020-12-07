@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
-public class Descarga_Controller {
+public class Descarga_Controlador {
 
     public Label lbURL, lbVelocidad, lbPorcentaje;
     public ProgressBar pbProgreso;
