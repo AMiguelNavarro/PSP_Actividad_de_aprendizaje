@@ -1,7 +1,7 @@
 package com.svalero.gestordescargas;
 
 import com.svalero.gestordescargas.controlador.App_Controlador;
-import com.svalero.gestordescargas.utilidades.R;
+import com.svalero.gestordescargas.utilidades.Recursos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,14 +18,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //TODO cargar ventana de inicio de fxml
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(R.getURL("inicio.fxml"));
+        loader.setLocation(Recursos.getURL("inicio.fxml"));
 
         App_Controlador controlador = new App_Controlador();
         loader.setController(controlador);
-
-//        controlador.aumentarContador(); // +1 al contador
 
         Parent root = loader.load();
 

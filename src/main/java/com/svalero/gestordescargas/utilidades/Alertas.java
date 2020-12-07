@@ -9,9 +9,24 @@ public class Alertas {
      * @param mensaje
      */
     public static void mostrarError(String mensaje) {
+
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setContentText(mensaje);
         alerta.show();
+
+    }
+
+
+    /**
+     * Muestra alerta de información
+     * @param mensaje
+     */
+    public static void mostrarInformacion(String mensaje) {
+
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setContentText(mensaje);
+        alerta.show();
+
     }
 
 }

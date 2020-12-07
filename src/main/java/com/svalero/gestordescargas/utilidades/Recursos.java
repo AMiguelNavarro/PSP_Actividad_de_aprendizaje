@@ -3,7 +3,7 @@ package com.svalero.gestordescargas.utilidades;
 import java.io.File;
 import java.net.URL;
 
-public class R {
+public class Recursos {
 
     /**
      * Devuelve la URL donde se encuentra el fxml
