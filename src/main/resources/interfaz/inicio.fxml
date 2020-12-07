@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="429.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="435.0" prefWidth="770.0">
+         <children>
+            <TextField layoutX="94.0" layoutY="35.0" prefHeight="26.0" prefWidth="377.0" />
+            <Label layoutX="45.0" layoutY="40.0" text="URL" />
+            <ButtonBar layoutX="137.0" layoutY="86.0" prefHeight="40.0" prefWidth="200.0" />
+          <Button layoutX="514.0" layoutY="36.0" mnemonicParsing="false" text="Descargar" />
+            <ScrollPane layoutX="39.0" layoutY="86.0" prefHeight="278.0" prefWidth="691.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+            <Separator layoutX="26.0" layoutY="382.0" prefHeight="0.0" prefWidth="717.0" />
+            <Label layoutX="42.0" layoutY="399.0" text="Descargas en curso --&gt;" />
+            <Label layoutX="178.0" layoutY="399.0" text="0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
