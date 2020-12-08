@@ -1,37 +1,29 @@
 package com.svalero.gestordescargas.controlador;
 
-import com.svalero.gestordescargas.hilo.DescargaTask;
-import com.svalero.gestordescargas.utilidades.Alertas;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.stage.FileChooser;
-
-import java.io.File;
-import java.net.MalformedURLException;
 
 public class Descarga_Controlador {
 
-    public Label lbURL, lbVelocidad, lbPorcentaje;
+    public Label lbURL, lbVelocidad, lbProgreso;
     public ProgressBar pbProgreso;
-    public Button btParar, btEliminar, btIniciar;
+    public Button btParar, btEliminar, btCancelar;
 
     private String url;
-    private DescargaTask descargaTask;
+    private App_Controlador appControlador;
 
 
     /**
-     * COnstructor que recibe la URL como String
+     * Constructor que recibe la url como string y el controlador inicial (Para poder conseguir la ruta de descarga)
+     * @param appControlador
      * @param url
      */
-    public Descarga_Controlador(String url) {
+    public Descarga_Controlador(App_Controlador appControlador, String url) {
         this.url = url;
+        this.appControlador = appControlador;
 
     }
 
@@ -40,68 +32,26 @@ public class Descarga_Controlador {
     @FXML
     public void eliminarDescarga(Event event) {
 
+        //TODO metodo eliminar descarga de la ventana (debe pararla antes)
+
     }
 
 
     @FXML
     public void pararDescarga(Event event) {
 
-        // Envia una orden de cancelacion a la clase DescargaTask
-        descargaTask.cancel();
+        // TODO metodo para parar la descarga
 
     }
+
 
     @FXML
-    public void iniciarDescarga(Event event){
+    public void cancelarDescarga(Event event) {
 
-        try {
-            pintarUrl(url);
-
-            FileChooser fileChooser = new FileChooser();
-            File file = fileChooser.showSaveDialog(null);
-
-            descargaTask = new DescargaTask(url, file);
-
-
-            // Permite acceder al progreso de la tarea
-            pbProgreso.progressProperty().unbind();
-            // Vinculo la barra de progreso al progreso de la tarea
-            pbProgreso.progressProperty().bind(descargaTask.progressProperty());
-
-
-
-            // Cada vez que el hilo tiene un cambio lo avisa con el listener
-            // Compactado con lambda
-            // Permite acceder al estado de la tarea
-            descargaTask.stateProperty().addListener((observableValue, estadoAntiguo, estadoNuevo) -> {
-
-                // Aquí lo que quiero que haga cuando cambie algo de la tarea
-                if (estadoNuevo == Worker.State.SUCCEEDED) {
-                    Alertas.mostrarInformacion("La descarga ha finalizado");
-                }
-
-                // Si el estado es cancelado muestra la alerta
-                if (estadoNuevo == Worker.State.CANCELLED) {
-                    Alertas.mostrarInformacion("Descarga parada");
-                }
-
-            });
-
-            descargaTask.messageProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> {
-
-                lbPorcentaje.setText(valorNuevo);
-
-            });
-
-            new Thread(descargaTask).start();
-
-        } catch (MalformedURLException e) {
-
-            Alertas.mostrarError("Error al iniciar la descarga del fichero");
-
-        }
+        // TODO metodo para cancelar la descarga
 
     }
+
 
 
     private void pintarUrl(String url) {
@@ -110,7 +60,7 @@ public class Descarga_Controlador {
 
     public void pararTodasLasDescargas() {
 
-        descargaTask.cancel();
+        // TODO metodo que pare todas las descargas
 
     }
 }
