@@ -1,6 +1,5 @@
 package com.svalero.gestordescargas.controlador;
 
-import com.svalero.gestordescargas.hilo.Descarga_Thread;
 import com.svalero.gestordescargas.utilidades.Alertas;
 import com.svalero.gestordescargas.utilidades.Recursos;
 import javafx.event.Event;
@@ -14,13 +13,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import org.apache.commons.validator.routines.UrlValidator;
-import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class App_Controlador {
+public class AppControlador {
 
     public TextField tfURL;
     public Button btDescargar, btPararTodas, btEliminarTodas, btRutaDescarga;
@@ -29,8 +27,7 @@ public class App_Controlador {
     public VBox layout;
 
     private int contador = 0;
-    private ArrayList<Descarga_Controlador> listaControladoresDescarga = new ArrayList<Descarga_Controlador>();
-    private Descarga_Thread descargaThread;
+    private ArrayList<DescargaControlador> listaControladoresDescarga = new ArrayList<>();
 
 
 
@@ -66,6 +63,7 @@ public class App_Controlador {
 
 
         String url = tfURL.getText();
+        String rutaDescarga = lbRutaSeleccionada.getText();
 
         if (url.isEmpty() || validarURL(url) != true) {
             Alertas.mostrarError("Debes introducir una URL válida");
@@ -83,17 +81,12 @@ public class App_Controlador {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Recursos.getURL("descarga.fxml"));
 
-            Descarga_Controlador controlador = new Descarga_Controlador(this,url);
+            DescargaControlador controlador = new DescargaControlador(url, rutaDescarga);
             loader.setController(controlador);
 
             Parent descarga = loader.load();
 
             layout.getChildren().add(descarga);
-
-            descargaThread = new Descarga_Thread(this, url, controlador.pbProgreso, controlador.lbProgreso);
-            descargaThread.start();
-
-            listaControladoresDescarga.add(controlador);
 
             limpiarCajaURL_PedirFoco();
             //Numero de descargas actuales
@@ -118,7 +111,7 @@ public class App_Controlador {
             Alertas.mostrarInformacion("No hay ninguna descarga que parar");
         }
 
-        for (Descarga_Controlador controlador : listaControladoresDescarga) {
+        for (DescargaControlador controlador : listaControladoresDescarga) {
             controlador.pararTodasLasDescargas();
         }
     }

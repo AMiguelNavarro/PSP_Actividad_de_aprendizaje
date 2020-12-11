@@ -1,6 +1,6 @@
 package com.svalero.gestordescargas;
 
-import com.svalero.gestordescargas.controlador.App_Controlador;
+import com.svalero.gestordescargas.controlador.AppControlador;
 import com.svalero.gestordescargas.utilidades.Recursos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Recursos.getURL("inicio.fxml"));
 
-        App_Controlador controlador = new App_Controlador();
+        AppControlador controlador = new AppControlador();
         loader.setController(controlador);
 
         Parent root = loader.load();
