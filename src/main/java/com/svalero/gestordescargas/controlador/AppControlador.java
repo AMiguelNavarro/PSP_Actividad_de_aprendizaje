@@ -27,7 +27,7 @@ public class AppControlador {
     public VBox layout;
 
     public int contador = 0;
-    private ArrayList<DescargaControlador> listaControladoresDescarga = new ArrayList<>();
+    public ArrayList<DescargaControlador> listaControladoresDescarga = new ArrayList<>();
 
 
 
@@ -115,11 +115,17 @@ public class AppControlador {
 
         if (listaControladoresDescarga.isEmpty()){
             Alertas.mostrarInformacion("No hay ninguna descarga que parar");
+            return;
         }
 
         for (DescargaControlador controlador : listaControladoresDescarga) {
             controlador.eliminarTodasLasDescargas();
         }
+
+        contador = 0;
+        lbNumDescargas.setText(String.valueOf(contador));
+
+        Alertas.mostrarInformacion("Ser han parado todas las descargas");
     }
 
 

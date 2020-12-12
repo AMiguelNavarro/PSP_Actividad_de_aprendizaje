@@ -7,7 +7,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
@@ -22,7 +24,7 @@ public class DescargaControlador {
 
     private String url, rutaDescarga;
     private DescargaTask descargaTask;
-    private enum Accion {PARAR, CANCELAR, ELIMINAR, ELIMINAR_TODO}
+    private enum Accion {PARAR, CANCELAR, ELIMINAR, ELIMINAR_TODO, PARAR_TODO}
     private Accion accion;
     private AppControlador appControlador;
 
@@ -83,8 +85,8 @@ public class DescargaControlador {
                             lbProgreso.setText("Descarga Cancelada");
                             pbProgreso.setStyle("-fx-accent: red;");
 
-                            appControlador.contador--;
-                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+//                            appControlador.contador--;
+//                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
                             break;
 
@@ -92,7 +94,17 @@ public class DescargaControlador {
                             //TODO log progreso
                             break;
 
+                        case PARAR_TODO:
+                            //TODO log progreso
+                            lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+                            break;
+
                         case ELIMINAR:
+                            Parent pantalla = btEliminar.getParent().getParent();
+                            appControlador.layout.getChildren().remove(pantalla);
+
+//                            appControlador.contador--;
+//                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
                             break;
                     }
 
@@ -104,6 +116,7 @@ public class DescargaControlador {
 
                 if (estadoNuevo == Worker.State.SUCCEEDED) {
 
+                    modoDescargaFinalizada(true);
                     Alertas.mostrarInformacion("La descarga ha finalizado");
                     lbProgreso.setText("Descarga finalizada!! --> 100 %");
                     pbProgreso.setStyle("-fx-accent: green;");
@@ -134,9 +147,37 @@ public class DescargaControlador {
     @FXML
     public void eliminarDescarga(Event event) {
 
-        //TODO metodo eliminar descarga de la ventana (debe pararla antes)
-        accion = Accion.ELIMINAR;
-        descargaTask.cancel();
+        // Si el boton pulsado en la alerta es cancelar, vuelve y no elimina la moto
+        if (Alertas.mostrarConfirmación().get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+            return;
+        }
+
+        if (!descargaTask.isCancelled()){
+
+            appControlador.contador--;
+            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+        } else {
+
+            appControlador.contador++;
+
+        }
+
+        if (descargaTask == null || descargaTask.isDone()) {
+
+
+            Parent pantalla = btEliminar.getParent().getParent();
+            appControlador.layout.getChildren().remove(pantalla);
+
+            appControlador.contador--;
+            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+        } else {
+
+            accion = Accion.ELIMINAR;
+            descargaTask.cancel();
+
+        }
 
     }
 
@@ -156,9 +197,21 @@ public class DescargaControlador {
     public void cancelarDescarga(Event event) {
 
         accion = Accion.CANCELAR;
+
+        if (!descargaTask.isCancelled()){
+
+            appControlador.contador--;
+            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+        } else {
+
+            lbProgreso.setText("Descarga Cancelada");
+            pbProgreso.setStyle("-fx-accent: red;");
+
+        }
+
         descargaTask.cancel();
 
-        //TODO si se para la descarga primero y luego se cancela, no actualiza la barra de progreso ni el texto, pero si cambia el modo a modoCancelarDescarga
         modoCancelarDescarga(true);
 
     }
@@ -173,6 +226,21 @@ public class DescargaControlador {
         }
         descargaTask.cancel();
     }
+
+
+
+
+
+    public void pararTodasLasDescargas() {
+
+        accion = Accion.PARAR_TODO;
+
+        if (descargaTask == null) {
+            return;
+        }
+        descargaTask.cancel();
+    }
+
 
 
     public void pintarURL() {
@@ -209,6 +277,11 @@ public class DescargaControlador {
         btIniciar.setDisable(activado);
         btReanudar.setDisable(activado);
         btParar.setDisable(activado);
+    }
+
+    public void modoDescargaFinalizada (boolean activado) {
+        btParar.setDisable(activado);
+        btCancelar.setDisable(activado);
     }
 
 }

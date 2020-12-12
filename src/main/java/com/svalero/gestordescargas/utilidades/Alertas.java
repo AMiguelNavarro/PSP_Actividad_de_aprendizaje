@@ -1,6 +1,9 @@
 package com.svalero.gestordescargas.utilidades;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
+import java.util.Optional;
 
 public class Alertas {
 
@@ -26,6 +29,20 @@ public class Alertas {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setContentText(mensaje);
         alerta.show();
+
+    }
+
+
+
+
+    public static Optional<ButtonType> mostrarConfirmación() {
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Confirmación");
+        alerta.setContentText("¿Estás seguro?");
+        Optional<ButtonType> respuesta = alerta.showAndWait();
+
+        return respuesta;
 
     }
 

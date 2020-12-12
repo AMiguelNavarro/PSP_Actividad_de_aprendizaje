@@ -11,7 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class DescargaTask extends Task<Integer> {
+public class DescargaTask extends Task<Void> {
 
     private URL url;
     private File ficheroRutaDescarga;
@@ -31,7 +31,7 @@ public class DescargaTask extends Task<Integer> {
 
 
     @Override
-    protected Integer call() throws Exception {
+    protected Void call() throws Exception {
 
         URLConnection urlConnection = url.openConnection();
         int tamanioFichero = urlConnection.getContentLength();
