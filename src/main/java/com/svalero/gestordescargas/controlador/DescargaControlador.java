@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class DescargaControlador {
     private Accion accion;
     private AppControlador appControlador;
 
+    private static final Logger logger = LogManager.getLogger(DescargaControlador.class);
 
 
 
@@ -147,7 +150,9 @@ public class DescargaControlador {
     @FXML
     public void eliminarDescarga(Event event) {
 
-        // Si el boton pulsado en la alerta es cancelar, vuelve y no elimina la moto
+        logger.trace("Descarga eliminada");
+
+        // Si el boton pulsado en la alerta es cancelar, vuelve y no elimina
         if (Alertas.mostrarConfirmación().get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
             return;
         }
@@ -185,6 +190,8 @@ public class DescargaControlador {
     @FXML
     public void pararDescarga(Event event) {
 
+        logger.trace("Descarga parada");
+
         accion = Accion.PARAR;
         descargaTask.cancel();
 
@@ -195,6 +202,8 @@ public class DescargaControlador {
 
     @FXML
     public void cancelarDescarga(Event event) {
+
+        logger.trace("Descarga cancelada");
 
         accion = Accion.CANCELAR;
 
@@ -219,6 +228,8 @@ public class DescargaControlador {
 
     public void eliminarTodasLasDescargas() {
 
+        logger.trace("Se eliminan todas las descargas");
+
         accion = Accion.ELIMINAR_TODO;
 
         if (descargaTask == null) {
@@ -232,6 +243,8 @@ public class DescargaControlador {
 
 
     public void pararTodasLasDescargas() {
+
+        logger.trace("Se paran todas las descargas");
 
         accion = Accion.PARAR_TODO;
 

@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.apache.commons.validator.routines.UrlValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +31,8 @@ public class AppControlador {
     public int contador = 0;
     public ArrayList<DescargaControlador> listaControladoresDescarga = new ArrayList<>();
 
+    private static final Logger logger = LogManager.getLogger(AppControlador.class);
+
 
 
 
@@ -36,6 +40,8 @@ public class AppControlador {
 
     @FXML
     public void rutaDescarga(Event event) {
+
+        logger.trace("Ruta de descarga seleccionada");
 
         FileChooser directorio = new FileChooser();
         directorio.setTitle("Seleccionar ruta de descarga");
@@ -51,6 +57,7 @@ public class AppControlador {
         lbRutaSeleccionada.setText(rutaSeleccionada);
 
         modoInicio(false);
+
 
     }
 
@@ -113,8 +120,13 @@ public class AppControlador {
     @FXML
     public void pararTodasLasDescargas(Event event) {
 
+
         if (listaControladoresDescarga.isEmpty()){
+
+            logger.trace("Se paran todas las descargas, pero no hay ninguna");
+
             Alertas.mostrarInformacion("No hay ninguna descarga que parar");
+
             return;
         }
 
@@ -135,7 +147,11 @@ public class AppControlador {
     @FXML
     public void eliminarTodasLasDescargas(Event event) {
 
+
         if (listaControladoresDescarga.isEmpty()) {
+
+            logger.trace("Se paran todas las descargas, pero la lista de descargas está vacía");
+
             Alertas.mostrarInformacion("No hay ninguna descarga que eliminar");
             return;
         }

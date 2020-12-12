@@ -1,7 +1,11 @@
 package com.svalero.gestordescargas.hilo;
 
+import com.svalero.gestordescargas.controlador.AppControlador;
 import com.svalero.gestordescargas.utilidades.Alertas;
 import javafx.concurrent.Task;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -16,6 +20,8 @@ public class DescargaTask extends Task<Void> {
     private URL url;
     private File ficheroRutaDescarga;
 
+    private static final Logger logger = LogManager.getLogger(DescargaTask.class);
+
 
 
 
@@ -24,6 +30,7 @@ public class DescargaTask extends Task<Void> {
 
     public DescargaTask(String url, String rutaDescarga) throws MalformedURLException {
 
+        logger.trace("Descarga creada");
         this.url = new URL(url);
         this.ficheroRutaDescarga = new File(rutaDescarga);
 
@@ -31,7 +38,11 @@ public class DescargaTask extends Task<Void> {
 
 
     @Override
-    protected Void call() throws Exception {
+    protected Void  call() throws Exception {
+
+        logger.trace("Descarga iniciada");
+
+        updateMessage("Conectando con el servidor ...");
 
         URLConnection urlConnection = url.openConnection();
         int tamanioFichero = urlConnection.getContentLength();
@@ -48,6 +59,7 @@ public class DescargaTask extends Task<Void> {
         while ((bytesLeidos = bis.read(dataBuffer,0,1024)) != -1) {
 
             if (isCancelled()){
+                logger.trace("Descarga" + url + " cancelada/parada");
                 progresoDescarga = (double) totalLeido / tamanioFichero;
                 updateProgress(progresoDescarga, 1);
                 updateProgress(progresoDescarga,1);
@@ -63,6 +75,8 @@ public class DescargaTask extends Task<Void> {
 
 
         }
+
+        logger.trace("Descarga finalizada");
 
         updateProgress(1,1);
 

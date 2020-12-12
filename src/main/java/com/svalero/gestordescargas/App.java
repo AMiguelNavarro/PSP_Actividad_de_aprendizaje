@@ -7,8 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class App extends Application {
+
+    private static final Logger logger = LogManager.getLogger(App.class);
 
     public static void main(String[] args) {
         launch();
@@ -17,6 +22,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        logger.trace("Aplicación iniciada Correctamente");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Recursos.getURL("inicio.fxml"));
