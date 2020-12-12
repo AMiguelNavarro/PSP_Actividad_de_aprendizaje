@@ -12,6 +12,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import org.apache.commons.validator.routines.UrlValidator;
 
 import java.io.File;
@@ -26,7 +27,7 @@ public class AppControlador {
     public Label lbNumDescargas, lbRutaSeleccionada;
     public VBox layout;
 
-    private int contador = 0;
+    public int contador = 0;
     private ArrayList<DescargaControlador> listaControladoresDescarga = new ArrayList<>();
 
 
@@ -37,9 +38,9 @@ public class AppControlador {
     @FXML
     public void rutaDescarga(Event event) {
 
-        DirectoryChooser directorio = new DirectoryChooser();
+        FileChooser directorio = new FileChooser();
         directorio.setTitle("Seleccionar ruta de descarga");
-        File fichero = directorio.showDialog(btDescargar.getScene().getWindow());
+        File fichero = directorio.showSaveDialog(btDescargar.getScene().getWindow());
         String rutaSeleccionada = fichero.getAbsolutePath();
 
 
@@ -53,7 +54,6 @@ public class AppControlador {
         modoInicio(false);
 
     }
-
 
 
 
@@ -81,22 +81,29 @@ public class AppControlador {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Recursos.getURL("descarga.fxml"));
 
-            DescargaControlador controlador = new DescargaControlador(url, rutaDescarga);
+            DescargaControlador controlador = new DescargaControlador(url, rutaDescarga, this);
             loader.setController(controlador);
 
             Parent descarga = loader.load();
 
+            controlador.pintarURL();
+            controlador.modoInicial(true);
+
             layout.getChildren().add(descarga);
+
+            listaControladoresDescarga.add(controlador);
 
             limpiarCajaURL_PedirFoco();
             //Numero de descargas actuales
             lbNumDescargas.setText(String.valueOf(contador));
 
+            modoInicio(true);
+            lbRutaSeleccionada.setText("Selecciona la ruta de descarga");
+
 
         } catch (IOException e) {
             Alertas.mostrarError("Error al cargar la ventana de descarga " + e.getMessage());
         }
-
 
     }
 
@@ -125,11 +132,17 @@ public class AppControlador {
 
         if (listaControladoresDescarga.isEmpty()) {
             Alertas.mostrarInformacion("No hay ninguna descarga que eliminar");
+            return;
+        }
+
+        for (DescargaControlador descargaControlador : listaControladoresDescarga) {
+            descargaControlador.pararTodasLasDescargas();
         }
 
         layout.getChildren().clear();
         listaControladoresDescarga.clear();
         contador = 0;
+        lbNumDescargas.setText(String.valueOf(contador));
     }
 
 

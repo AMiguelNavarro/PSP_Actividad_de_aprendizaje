@@ -25,7 +25,7 @@ public class DescargaTask extends Task<Integer> {
     public DescargaTask(String url, String rutaDescarga) throws MalformedURLException {
 
         this.url = new URL(url);
-        this.ficheroRutaDescarga = new File(rutaDescarga + File.separator + "prueba.zip");
+        this.ficheroRutaDescarga = new File(rutaDescarga);
 
     }
 
@@ -48,12 +48,15 @@ public class DescargaTask extends Task<Integer> {
         while ((bytesLeidos = bis.read(dataBuffer,0,1024)) != -1) {
 
             if (isCancelled()){
+                progresoDescarga = (double) totalLeido / tamanioFichero;
+                updateProgress(progresoDescarga, 1);
+                updateProgress(progresoDescarga,1);
                 return null;
             }
 
             progresoDescarga = (double) totalLeido / tamanioFichero;
             updateProgress(progresoDescarga, 1);
-            updateMessage(Math.round(progresoDescarga * 100) + " %");
+            updateMessage("Descargando --> " + Math.round(progresoDescarga * 100) + " %. Tamaño total archivo --> " + tamanioFichero / 1000000 + " kb");
 
             fos.write(dataBuffer,0, bytesLeidos);
             totalLeido += bytesLeidos;
@@ -61,7 +64,7 @@ public class DescargaTask extends Task<Integer> {
 
         }
 
-        updateProgress(0,1);
+        updateProgress(1,1);
 
         return null;
     }

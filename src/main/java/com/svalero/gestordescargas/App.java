@@ -26,6 +26,8 @@ public class App extends Application {
 
         Parent root = loader.load();
 
+        controlador.lbRutaSeleccionada.setText("Selecciona una ruta de descarga");
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

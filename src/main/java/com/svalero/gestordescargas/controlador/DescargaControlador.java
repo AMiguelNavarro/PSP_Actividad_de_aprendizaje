@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 public class DescargaControlador {
 
@@ -21,16 +22,20 @@ public class DescargaControlador {
 
     private String url, rutaDescarga;
     private DescargaTask descargaTask;
+    private enum Accion {PARAR, CANCELAR, ELIMINAR_TODO}
+    private Accion accion;
+    private AppControlador appControlador;
 
 
 
 
 
-    public DescargaControlador(String url, String rutaDescarga) {
+
+    public DescargaControlador(String url, String rutaDescarga, AppControlador appControlador) {
 
         this.url = url;
         this.rutaDescarga = rutaDescarga;
-
+        this.appControlador = appControlador;
 
     }
 
@@ -40,10 +45,10 @@ public class DescargaControlador {
     public void iniciarDescarga(Event event) {
 
         lbURL.setText(url);
-        // TODO iniciar descarga
+
+        modoDescarga(true);
+
         try {
-
-
 
             descargaTask = new DescargaTask(url, rutaDescarga);
 
@@ -58,16 +63,49 @@ public class DescargaControlador {
 
                 }
 
+
+
+
+
                 if (estadoNuevo == Worker.State.CANCELLED) {
 
-                    lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+                    switch (accion){
+
+                        // TODO arreglar bugs, a veces cuando para no pinta los textos correctamente
+                        case PARAR:
+                            lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+
+                            appControlador.contador--;
+                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+                            break;
+
+                            // TODO poner barra de progreso a 0 cuando se cancele
+                        case CANCELAR:
+                            lbProgreso.setText("Descarga Cancelada");
+                            pbProgreso.setStyle("-fx-accent: red;");
+
+                            appControlador.contador--;
+                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+                            break;
+
+                        case ELIMINAR_TODO:
+                            Alertas.mostrarInformacion("Se han eliminado todas las descargas");
+                            break;
+                    }
+
+
 
                 }
+
+
 
                 if (estadoNuevo == Worker.State.SUCCEEDED) {
 
                     Alertas.mostrarInformacion("La descarga ha finalizado");
                     lbProgreso.setText("Descarga finalizada!! --> 100 %");
+                    pbProgreso.setStyle("-fx-accent: green;");
 
                 }
                 
@@ -101,7 +139,10 @@ public class DescargaControlador {
     @FXML
     public void pararDescarga(Event event) {
 
+        accion = Accion.PARAR;
         descargaTask.cancel();
+
+        modoPararDescarga(true);
 
     }
 
@@ -110,18 +151,60 @@ public class DescargaControlador {
     public void cancelarDescarga(Event event) {
 
         // TODO metodo para cancelar la descarga
+        accion = Accion.CANCELAR;
+        descargaTask.cancel();
+
+        //TODO si se para la descarga primero y luego se cancela, no actualiza la barra de progreso ni el texto, pero si cambia el modo a modoCancelarDescarga
+        modoCancelarDescarga(true);
 
     }
 
-
-
-    private void pintarUrl(String url) {
-        lbURL.setText(url);
-    }
 
     public void pararTodasLasDescargas() {
 
-        // TODO metodo que pare todas las descargas
+        accion = Accion.ELIMINAR_TODO;
 
+        if (descargaTask.isCancelled()) {
+            return;
+        }
+        descargaTask.cancel();
     }
+
+
+    public void pintarURL() {
+        lbURL.setText(url);
+    }
+
+    public void modoInicial(boolean activado) {
+        btParar.setDisable(activado);
+        btReanudar.setDisable(activado);
+        btCancelar.setDisable(activado);
+
+        btIniciar.setDisable(!activado);
+        btEliminar.setDisable(!activado);
+    }
+
+
+    public void modoDescarga (boolean activado) {
+        btIniciar.setDisable(activado);
+        btReanudar.setDisable(activado);
+
+        btParar.setDisable(!activado);
+        btCancelar.setDisable(!activado);
+        btEliminar.setDisable(!activado);
+    }
+
+    public void modoPararDescarga (boolean activado) {
+        btReanudar.setDisable(!activado);
+
+        btParar.setDisable(activado);
+    }
+
+    public void modoCancelarDescarga (boolean activado) {
+
+        btIniciar.setDisable(activado);
+        btReanudar.setDisable(activado);
+        btParar.setDisable(activado);
+    }
+
 }
