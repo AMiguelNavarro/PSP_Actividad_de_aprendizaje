@@ -22,7 +22,7 @@ public class DescargaControlador {
 
     private String url, rutaDescarga;
     private DescargaTask descargaTask;
-    private enum Accion {PARAR, CANCELAR, ELIMINAR_TODO}
+    private enum Accion {PARAR, CANCELAR, ELIMINAR, ELIMINAR_TODO}
     private Accion accion;
     private AppControlador appControlador;
 
@@ -71,7 +71,6 @@ public class DescargaControlador {
 
                     switch (accion){
 
-                        // TODO arreglar bugs, a veces cuando para no pinta los textos correctamente
                         case PARAR:
                             lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
 
@@ -80,7 +79,6 @@ public class DescargaControlador {
 
                             break;
 
-                            // TODO poner barra de progreso a 0 cuando se cancele
                         case CANCELAR:
                             lbProgreso.setText("Descarga Cancelada");
                             pbProgreso.setStyle("-fx-accent: red;");
@@ -91,7 +89,10 @@ public class DescargaControlador {
                             break;
 
                         case ELIMINAR_TODO:
-                            Alertas.mostrarInformacion("Se han eliminado todas las descargas");
+                            //TODO log progreso
+                            break;
+
+                        case ELIMINAR:
                             break;
                     }
 
@@ -124,6 +125,8 @@ public class DescargaControlador {
     @FXML
     public void reanudarDescarga(Event event) {
 
+        // TODO que se pueda reanudar la descarga
+
     }
 
 
@@ -132,6 +135,8 @@ public class DescargaControlador {
     public void eliminarDescarga(Event event) {
 
         //TODO metodo eliminar descarga de la ventana (debe pararla antes)
+        accion = Accion.ELIMINAR;
+        descargaTask.cancel();
 
     }
 
@@ -150,7 +155,6 @@ public class DescargaControlador {
     @FXML
     public void cancelarDescarga(Event event) {
 
-        // TODO metodo para cancelar la descarga
         accion = Accion.CANCELAR;
         descargaTask.cancel();
 
@@ -160,11 +164,11 @@ public class DescargaControlador {
     }
 
 
-    public void pararTodasLasDescargas() {
+    public void eliminarTodasLasDescargas() {
 
         accion = Accion.ELIMINAR_TODO;
 
-        if (descargaTask.isCancelled()) {
+        if (descargaTask == null) {
             return;
         }
         descargaTask.cancel();

@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.apache.commons.validator.routines.UrlValidator;
 
@@ -119,7 +118,7 @@ public class AppControlador {
         }
 
         for (DescargaControlador controlador : listaControladoresDescarga) {
-            controlador.pararTodasLasDescargas();
+            controlador.eliminarTodasLasDescargas();
         }
     }
 
@@ -136,13 +135,15 @@ public class AppControlador {
         }
 
         for (DescargaControlador descargaControlador : listaControladoresDescarga) {
-            descargaControlador.pararTodasLasDescargas();
+            descargaControlador.eliminarTodasLasDescargas();
         }
 
         layout.getChildren().clear();
         listaControladoresDescarga.clear();
         contador = 0;
         lbNumDescargas.setText(String.valueOf(contador));
+
+        Alertas.mostrarInformacion("Ser han eliminado todas las descargas");
     }
 
 
