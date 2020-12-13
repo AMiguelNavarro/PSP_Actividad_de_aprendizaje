@@ -179,8 +179,14 @@ public class AppControlador {
             String linea;
 
             while ((linea = bufferedReader.readLine()) != null) {
-                taHistorial.setText(linea);
+                taHistorial.appendText(linea);
+                taHistorial.appendText("\n");
+
             }
+
+            fileInputStream.close();
+            bufferedReader.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             logger.error("No se encuentra el fichero de historial");

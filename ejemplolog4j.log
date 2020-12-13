@@ -69,3 +69,16 @@
 18:39:38.193 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
 18:39:38.195 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
 18:39:39.009 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:19:44.363 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:19:44.368 [JavaFX Application Thread] ERROR com.svalero.gestordescargas.controlador.AppControlador - No se encuentra el fichero de historial
+19:21:42.553 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+19:21:49.130 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:21:53.163 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:21:54.074 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:22:06.528 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+19:22:13.002 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:22:20.210 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se paran todas las descargas, pero no hay ninguna
+19:22:22.466 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se paran todas las descargas, pero la lista de descargas está vacía
+19:22:23.874 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+19:25:45.936 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+19:25:53.362 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
