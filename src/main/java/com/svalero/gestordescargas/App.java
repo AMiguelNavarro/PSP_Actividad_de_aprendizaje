@@ -23,18 +23,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        logger.trace("Aplicación iniciada Correctamente");
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Recursos.getURL("splashScreen.fxml"));
 
-//        AppControlador controlador = new AppControlador();
         SplashScreenControlador controlador = new SplashScreenControlador();
         loader.setController(controlador);
 
         Parent root = loader.load();
-
-//        controlador.lbRutaSeleccionada.setText("Selecciona una ruta de descarga");
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

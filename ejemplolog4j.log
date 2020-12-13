@@ -1,0 +1,31 @@
+17:50:00.802 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.App - Aplicaci�n iniciada Correctamente
+17:50:15.877 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+17:50:24.351 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+17:50:24.357 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+17:50:25.949 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+17:50:25.951 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:18:45.273 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicaci�n desde el Splash Screen
+18:19:07.034 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:19:14.325 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:19:14.330 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:19:15.410 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+18:19:15.689 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:19:23.219 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha eliminado una descarga individual
+18:19:26.426 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:19:31.731 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:19:31.732 [Thread-5] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:19:33.190 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+18:19:33.190 [Thread-5] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:20:13.922 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:20:20.787 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:20:20.788 [Thread-6] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:20:23.426 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha cancelado una descarga de forma individual
+18:20:23.427 [Thread-6] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:20:34.674 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha eliminado una descarga individual
+18:20:36.786 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha eliminado una descarga individual
+18:23:03.416 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicaci�n desde el Splash Screen
+18:23:11.642 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:23:17.476 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:23:17.481 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:23:19.634 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+18:23:19.636 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada

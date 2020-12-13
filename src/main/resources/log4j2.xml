@@ -4,7 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="Fichero" fileName="multidescargas.log" bufferedIO="false" advertiseURI="file://ejemplolog4j.log" advertise="true">
+        <File name="Fichero" fileName="ejemplolog4j.log" bufferedIO="false" advertise="true">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </Appenders>

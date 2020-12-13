@@ -40,7 +40,7 @@ public class DescargaTask extends Task<Void> {
     @Override
     protected Void  call() throws Exception {
 
-        logger.trace("Descarga iniciada");
+        logger.trace("Se ha iniciado la descarga de " + url);
 
         updateMessage("Conectando con el servidor ...");
 
@@ -56,7 +56,7 @@ public class DescargaTask extends Task<Void> {
 
         int bytesLeidos;
         int totalLeido = 0;
-        int anterior = 0;
+//        int anterior = 0;
         while ((bytesLeidos = bis.read(dataBuffer,0,1024)) != -1) {
 
             if (isCancelled()){
@@ -66,9 +66,12 @@ public class DescargaTask extends Task<Void> {
                 updateProgress(progresoDescarga,1);
                 return null;
             }
-//
-//            double velocidad = (double) (totalLeido/anterior) / 1048576;
-//            anterior = totalLeido;
+
+//            long tiempo = System.currentTimeMillis();
+//            if (tiempo % 100 == 0) {
+//                double velocidad = (double) (totalLeido-anterior) / 1048576;
+//                anterior = totalLeido;
+//            }
 
             progresoDescarga = (double) totalLeido / tamanioFichero;
             updateProgress(progresoDescarga, 1);
@@ -79,6 +82,9 @@ public class DescargaTask extends Task<Void> {
 
 
         }
+
+        bis.close();
+        fos.close();
 
         logger.trace("Descarga finalizada");
 

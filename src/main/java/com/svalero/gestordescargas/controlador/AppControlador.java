@@ -16,16 +16,15 @@ import org.apache.commons.validator.routines.UrlValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class AppControlador {
 
     public TextField tfURL;
-    public Button btDescargar, btPararTodas, btEliminarTodas, btRutaDescarga;
+    public Button btDescargar, btPararTodas, btEliminarTodas, btRutaDescarga, btHistorial;
     public ScrollPane spDescargas;
-    public Label lbNumDescargas, lbRutaSeleccionada;
+    public Label lbNumDescargas, lbRutaSeleccionada, lbHistorial;
     public VBox layout;
 
     public int contador = 0;
@@ -167,6 +166,39 @@ public class AppControlador {
 
         Alertas.mostrarInformacion("Ser han eliminado todas las descargas");
     }
+
+
+
+
+    @FXML
+    public void verHistorial (Event event) {
+
+        logger.trace("Se visualiza el historial de la aplicación");
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream("D:\\PROGRAMACIÓN DE SERVICIOS Y PROCESOS\\AA_1EV_GestorDeDescargas\\ejemplog4j.log");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+
+            String linea;
+
+            while ((linea = bufferedReader.readLine()) != null) {
+                lbHistorial.setText(linea);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            logger.error("No se encuentra el fichero de historial");
+        } catch (IOException e) {
+            logger.error("No se puede leer el fichero de historial correctamente");
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+
 
 
 

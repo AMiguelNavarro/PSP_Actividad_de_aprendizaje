@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -16,12 +18,14 @@ public class SplashScreenThread extends Thread{
 
     private ProgressBar pbProgreso;
 
+
     public SplashScreenThread (ProgressBar pbProgreso) {
         this.pbProgreso = pbProgreso;
     }
 
     @Override
     public void run() {
+
         for (int i=1; i < 6; i++) {
             try {
                 Thread.sleep(1000);
