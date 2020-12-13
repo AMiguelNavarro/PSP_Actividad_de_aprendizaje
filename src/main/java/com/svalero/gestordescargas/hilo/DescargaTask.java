@@ -56,6 +56,7 @@ public class DescargaTask extends Task<Void> {
 
         int bytesLeidos;
         int totalLeido = 0;
+        int anterior = 0;
         while ((bytesLeidos = bis.read(dataBuffer,0,1024)) != -1) {
 
             if (isCancelled()){
@@ -65,10 +66,13 @@ public class DescargaTask extends Task<Void> {
                 updateProgress(progresoDescarga,1);
                 return null;
             }
+//
+//            double velocidad = (double) (totalLeido/anterior) / 1048576;
+//            anterior = totalLeido;
 
             progresoDescarga = (double) totalLeido / tamanioFichero;
             updateProgress(progresoDescarga, 1);
-            updateMessage("Descargando --> " + Math.round(progresoDescarga * 100) + " %. Tamaño total archivo --> " + tamanioFichero / 1000000 + " kb");
+            updateMessage("Descargando --> " + Math.round(progresoDescarga * 100) + " %. Tamaño total archivo --> " + tamanioFichero / 1000000 + " MB");
 
             fos.write(dataBuffer,0, bytesLeidos);
             totalLeido += bytesLeidos;

@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="408.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#e66465, #9198e5);;">
+      <AnchorPane prefHeight="408.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to left bottom, #00b300, #00a466, #008f93, #00769c, #015c85);">
          <children>
             <Label layoutX="111.0" layoutY="14.0" prefHeight="58.0" prefWidth="378.0" text="TRABAJO FINAL 1ª EV PSP" textFill="WHITE">
                <font>

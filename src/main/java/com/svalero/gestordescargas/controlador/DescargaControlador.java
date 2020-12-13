@@ -2,27 +2,25 @@ package com.svalero.gestordescargas.controlador;
 
 import com.svalero.gestordescargas.hilo.DescargaTask;
 import com.svalero.gestordescargas.utilidades.Alertas;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
+
 
 public class DescargaControlador {
 
-    public Label lbURL, lbVelocidad, lbProgreso;
+    public Label lbURL, lbProgreso;
     public ProgressBar pbProgreso;
     public Button btParar, btEliminar, btCancelar, btReanudar, btIniciar;
+    public CheckBox cbRutaDescarga;
 
     private String url, rutaDescarga;
     private DescargaTask descargaTask;
@@ -49,93 +47,113 @@ public class DescargaControlador {
     @FXML
     public void iniciarDescarga(Event event) {
 
-        lbURL.setText(url);
+        boolean cambiarRutaDescarga = cbRutaDescarga.isSelected();
 
-        modoDescarga(true);
+        /**
+         * Si el usuario marca el checkbox le permite cambiar la ruta antes de iniciar la descarga
+         */
+        if (cambiarRutaDescarga) {
 
-        try {
-
-            descargaTask = new DescargaTask(url, rutaDescarga);
-
-            descargaTask.stateProperty().addListener((observableValue, estadoAntiguo, estadoNuevo) -> {
-
-
-
-                if (estadoNuevo == Worker.State.RUNNING) {
-
-                    pbProgreso.progressProperty().unbind();
-                    pbProgreso.progressProperty().bind(descargaTask.progressProperty());
-
-                }
+            FileChooser directorio = new FileChooser();
+            directorio.setTitle("Seleccionar ruta de descarga");
+            File fichero = directorio.showSaveDialog(btCancelar.getScene().getWindow());
+            String rutaSeleccionada = fichero.getAbsolutePath();
+            try {
+                descargaTask = new DescargaTask(url, rutaSeleccionada);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
 
 
+            if (fichero == null) {
+                Alertas.mostrarError("La ruta no puede estar vacia");
+                return;
+            }
 
-
-
-                if (estadoNuevo == Worker.State.CANCELLED) {
-
-                    switch (accion){
-
-                        case PARAR:
-                            lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
-
-                            appControlador.contador--;
-                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
-
-                            break;
-
-                        case CANCELAR:
-                            lbProgreso.setText("Descarga Cancelada");
-                            pbProgreso.setStyle("-fx-accent: red;");
-
-//                            appControlador.contador--;
-//                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
-
-                            break;
-
-                        case ELIMINAR_TODO:
-                            //TODO log progreso
-                            break;
-
-                        case PARAR_TODO:
-                            //TODO log progreso
-                            lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
-                            break;
-
-                        case ELIMINAR:
-                            Parent pantalla = btEliminar.getParent().getParent();
-                            appControlador.layout.getChildren().remove(pantalla);
-
-//                            appControlador.contador--;
-//                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
-                            break;
-                    }
-
-
-
-                }
-
-
-
-                if (estadoNuevo == Worker.State.SUCCEEDED) {
-
-                    modoDescargaFinalizada(true);
-                    Alertas.mostrarInformacion("La descarga ha finalizado");
-                    lbProgreso.setText("Descarga finalizada!! --> 100 %");
-                    pbProgreso.setStyle("-fx-accent: green;");
-
-                }
-                
-            });
-
-
-            descargaTask.messageProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> {lbProgreso.setText(valorNuevo);});
-
-            new Thread(descargaTask).start();
-
-        } catch (MalformedURLException e) {
-            Alertas.mostrarError("La URL no es válida");
+        } else {
+            try {
+                descargaTask = new DescargaTask(url, rutaDescarga);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
+
+            lbURL.setText(url);
+
+            modoDescarga(true);
+
+        descargaTask.stateProperty().addListener((observableValue, estadoAntiguo, estadoNuevo) -> {
+
+
+            if (estadoNuevo == Worker.State.RUNNING) {
+
+                pbProgreso.progressProperty().unbind();
+                pbProgreso.progressProperty().bind(descargaTask.progressProperty());
+
+            }
+
+
+            if (estadoNuevo == Worker.State.CANCELLED) {
+
+                switch (accion) {
+
+                    case PARAR:
+                        lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+
+                        appControlador.contador--;
+                        appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+                        break;
+
+                    case CANCELAR:
+                        lbProgreso.setText("Descarga Cancelada");
+                        pbProgreso.setStyle("-fx-accent: red;");
+
+//                            appControlador.contador--;
+//                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+                        break;
+
+                    case ELIMINAR_TODO:
+                        //TODO log progreso
+                        break;
+
+                    case PARAR_TODO:
+                        //TODO log progreso
+                        lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+                        break;
+
+                    case ELIMINAR:
+                        Parent pantalla = btEliminar.getParent().getParent();
+                        appControlador.layout.getChildren().remove(pantalla);
+
+//                            appControlador.contador--;
+//                            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+                        break;
+                }
+
+
+            }
+
+
+            if (estadoNuevo == Worker.State.SUCCEEDED) {
+
+                modoDescargaFinalizada(true);
+                Alertas.mostrarInformacion("La descarga ha finalizado");
+                lbProgreso.setText("Descarga finalizada!! --> 100 %");
+                pbProgreso.setStyle("-fx-accent: green;");
+
+            }
+
+        });
+
+
+        descargaTask.messageProperty().addListener((observableValue, valorAntiguo, valorNuevo) -> {
+            lbProgreso.setText(valorNuevo);
+        });
+
+        new Thread(descargaTask).start();
+
     }
 
     @FXML

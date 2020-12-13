@@ -22,7 +22,7 @@ public class SplashScreenThread extends Thread{
 
     @Override
     public void run() {
-        for (int i=1; i <= 5; i++) {
+        for (int i=1; i < 6; i++) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -31,7 +31,7 @@ public class SplashScreenThread extends Thread{
 
             final int progreso = i;
             Platform.runLater(() -> {
-                pbProgreso.setProgress((double) progreso/8);
+                pbProgreso.setProgress((double) progreso/4);
             });
         }
         Platform.runLater(() -> {
