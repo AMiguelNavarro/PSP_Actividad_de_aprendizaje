@@ -29,3 +29,43 @@
 18:23:17.481 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
 18:23:19.634 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
 18:23:19.636 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:27:00.864 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:27:09.762 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:27:15.196 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:27:15.203 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:27:18.087 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+18:27:18.089 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:27:53.632 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:28:00.930 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:28:08.204 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:28:08.209 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:28:11.474 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha cancelado una descarga de forma individual
+18:28:11.476 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:28:12.498 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:28:12.503 [JavaFX Application Thread] ERROR com.svalero.gestordescargas.controlador.AppControlador - No se encuentra el fichero de historial
+18:28:50.727 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:28:57.258 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:28:57.265 [JavaFX Application Thread] ERROR com.svalero.gestordescargas.controlador.AppControlador - No se encuentra el fichero de historial
+18:30:48.247 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:30:54.666 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:30:54.672 [JavaFX Application Thread] ERROR com.svalero.gestordescargas.controlador.AppControlador - No se encuentra el fichero de historial
+18:32:06.815 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:32:20.241 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:32:20.247 [JavaFX Application Thread] ERROR com.svalero.gestordescargas.controlador.AppControlador - No se encuentra el fichero de historial
+18:37:26.695 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:37:35.272 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:37:35.279 [JavaFX Application Thread] ERROR com.svalero.gestordescargas.controlador.AppControlador - No se encuentra el fichero de historial
+18:38:26.727 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+18:38:34.361 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:38:36.177 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:38:36.984 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:38:38.969 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:39:10.352 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:39:12.569 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:39:13.208 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación
+18:39:28.240 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada
+18:39:36.123 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+18:39:36.128 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz
+18:39:38.193 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+18:39:38.195 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.14.tar.xz cancelada/parada
+18:39:39.009 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se visualiza el historial de la aplicación

@@ -6,10 +6,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.apache.commons.validator.routines.UrlValidator;
@@ -23,9 +20,9 @@ public class AppControlador {
 
     public TextField tfURL;
     public Button btDescargar, btPararTodas, btEliminarTodas, btRutaDescarga, btHistorial;
-    public ScrollPane spDescargas;
-    public Label lbNumDescargas, lbRutaSeleccionada, lbHistorial;
+    public Label lbNumDescargas, lbRutaSeleccionada;
     public VBox layout;
+    public TextArea taHistorial;
 
     public int contador = 0;
     public ArrayList<DescargaControlador> listaControladoresDescarga = new ArrayList<>();
@@ -176,13 +173,13 @@ public class AppControlador {
         logger.trace("Se visualiza el historial de la aplicación");
 
         try {
-            FileInputStream fileInputStream = new FileInputStream("D:\\PROGRAMACIÓN DE SERVICIOS Y PROCESOS\\AA_1EV_GestorDeDescargas\\ejemplog4j.log");
+            FileInputStream fileInputStream = new FileInputStream("ejemplolog4j.log");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
 
             String linea;
 
             while ((linea = bufferedReader.readLine()) != null) {
-                lbHistorial.setText(linea);
+                taHistorial.setText(linea);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
