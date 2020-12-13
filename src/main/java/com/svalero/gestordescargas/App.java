@@ -1,6 +1,6 @@
 package com.svalero.gestordescargas;
 
-import com.svalero.gestordescargas.controlador.AppControlador;
+import com.svalero.gestordescargas.controlador.SplashScreenControlador;
 import com.svalero.gestordescargas.utilidades.Recursos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,20 +26,21 @@ public class App extends Application {
         logger.trace("Aplicación iniciada Correctamente");
 
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Recursos.getURL("inicio.fxml"));
+        loader.setLocation(Recursos.getURL("splashScreen.fxml"));
 
-        AppControlador controlador = new AppControlador();
+//        AppControlador controlador = new AppControlador();
+        SplashScreenControlador controlador = new SplashScreenControlador();
         loader.setController(controlador);
 
         Parent root = loader.load();
 
-        controlador.lbRutaSeleccionada.setText("Selecciona una ruta de descarga");
+//        controlador.lbRutaSeleccionada.setText("Selecciona una ruta de descarga");
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
-        controlador.modoInicio(true);
+//        controlador.modoInicio(true);
 
     }
 }
