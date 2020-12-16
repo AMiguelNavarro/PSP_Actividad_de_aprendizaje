@@ -24,7 +24,7 @@ public class DescargaControlador {
 
     private String url, rutaDescarga;
     private DescargaTask descargaTask;
-    private enum Accion {PARAR, CANCELAR, ELIMINAR, ELIMINAR_TODO, PARAR_TODO}
+    private enum Accion {CANCELAR, ELIMINAR, ELIMINAR_TODO, PARAR_TODO}
     private Accion accion;
     private AppControlador appControlador;
 
@@ -100,14 +100,6 @@ public class DescargaControlador {
 
                 switch (accion) {
 
-                    case PARAR:
-                        lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
-
-                        appControlador.contador--;
-                        appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
-
-                        break;
-
                     case CANCELAR:
                         lbProgreso.setText("Descarga Cancelada");
                         pbProgreso.setStyle("-fx-accent: red;");
@@ -156,8 +148,12 @@ public class DescargaControlador {
 
     @FXML
     public void reanudarDescarga(Event event) {
+        descargaTask.setPausado(false);
 
-        // TODO que se pueda reanudar la descarga
+        modoDescarga(true);
+
+        appControlador.contador++;
+        appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
     }
 
@@ -176,6 +172,10 @@ public class DescargaControlador {
         if (!descargaTask.isCancelled()){
 
             appControlador.contador--;
+
+            if (appControlador.contador < 0) {
+                appControlador.contador = 0;
+            }
             appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
         } else {
@@ -208,8 +208,12 @@ public class DescargaControlador {
 
         logger.trace("Se ha parado una descarga individual");
 
-        accion = Accion.PARAR;
-        descargaTask.cancel();
+        descargaTask.setPausado(true);
+
+        lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+
+        appControlador.contador--;
+        appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
         modoPararDescarga(true);
 
@@ -226,6 +230,9 @@ public class DescargaControlador {
         if (!descargaTask.isCancelled()){
 
             appControlador.contador--;
+            if (appControlador.contador < 0) {
+                appControlador.contador = 0;
+            }
             appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
         } else {
@@ -311,6 +318,15 @@ public class DescargaControlador {
     public void modoDescargaFinalizada (boolean activado) {
         btParar.setDisable(activado);
         btCancelar.setDisable(activado);
+    }
+
+    public void modoReanudarDescarga (boolean activado) {
+        btReanudar.setDisable(activado);
+        btIniciar.setDisable(activado);
+
+        btCancelar.setDisable(!activado);
+        btEliminar.setDisable(!activado);
+        btParar.setDisable(!activado);
     }
 
 }

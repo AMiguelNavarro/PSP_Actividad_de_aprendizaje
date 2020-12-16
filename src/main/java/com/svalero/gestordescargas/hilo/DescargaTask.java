@@ -19,6 +19,7 @@ public class DescargaTask extends Task<Void> {
 
     private URL url;
     private File ficheroRutaDescarga;
+    private boolean pausado;
 
     private static final Logger logger = LogManager.getLogger(DescargaTask.class);
 
@@ -36,6 +37,9 @@ public class DescargaTask extends Task<Void> {
 
     }
 
+    public boolean isPausado() { return pausado;}
+
+    public void setPausado(boolean pausado) {  this.pausado = pausado;}
 
     @Override
     protected Void  call() throws Exception {
@@ -58,6 +62,11 @@ public class DescargaTask extends Task<Void> {
         int totalLeido = 0;
 //        int anterior = 0;
         while ((bytesLeidos = bis.read(dataBuffer,0,1024)) != -1) {
+
+            if (pausado) {
+                Thread.sleep(1000);
+                continue;
+            }
 
             if (isCancelled()){
                 logger.trace("Descarga" + url + " cancelada/parada");
