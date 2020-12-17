@@ -29,6 +29,9 @@ public class AppControlador {
 
     private static final Logger logger = LogManager.getLogger(AppControlador.class);
 
+    // Se declara aquí para poder utilizarla en los logger
+    private String rutaDescarga;
+
 
 
 
@@ -37,22 +40,24 @@ public class AppControlador {
     @FXML
     public void rutaDescarga(Event event) {
 
-        logger.trace("Ruta de descarga seleccionada");
-
         FileChooser directorio = new FileChooser();
         directorio.setTitle("Seleccionar ruta de descarga");
         File fichero = directorio.showSaveDialog(btDescargar.getScene().getWindow());
-        String rutaSeleccionada = fichero.getAbsolutePath();
-
 
         if (fichero == null) {
             Alertas.mostrarError("La ruta no puede estar vacia");
+            logger.trace("Se cancela la ventana de selección de ruta de descarga");
             return;
         }
+
+        String rutaSeleccionada = fichero.getAbsolutePath();
+        rutaDescarga = rutaSeleccionada;
 
         lbRutaSeleccionada.setText(rutaSeleccionada);
 
         modoInicio(false);
+
+        logger.trace("Ruta de descarga seleccionada: " + rutaSeleccionada);
 
 
     }
@@ -69,12 +74,17 @@ public class AppControlador {
 
         if (url.isEmpty() || validarURL(url) != true) {
             Alertas.mostrarError("Debes introducir una URL válida");
+
+            logger.trace("Se pulsa el botón de descarga pero no se ha introducido ninguna URL válida");
             return;
         }
 
         aumentarContador();
+
         if (contador > 5) {
             Alertas.mostrarInformacion("El número máximo de descargas es 5");
+
+            logger.trace("Se intenta descargar un archivo pero no se puede ya que hay 5 decargas pendientes");
             return;
         }
 
@@ -92,8 +102,10 @@ public class AppControlador {
             controlador.modoInicial(true);
 
             layout.getChildren().add(descarga);
+            logger.trace("Se añade una descarga");
 
             listaControladoresDescarga.add(controlador);
+            logger.trace("Se añade un controlador a la lista de controladores");
 
             limpiarCajaURL_PedirFoco();
             //Numero de descargas actuales
@@ -105,6 +117,8 @@ public class AppControlador {
 
         } catch (IOException e) {
             Alertas.mostrarError("Error al cargar la ventana de descarga " + e.getMessage());
+
+            logger.error("Error al añadir la descarga cargando la ventana " + e.fillInStackTrace());
         }
 
     }
@@ -119,21 +133,23 @@ public class AppControlador {
 
         if (listaControladoresDescarga.isEmpty()){
 
-            logger.trace("Se paran todas las descargas, pero no hay ninguna");
-
             Alertas.mostrarInformacion("No hay ninguna descarga que parar");
+
+            logger.trace("Se intentan parar todas las descargas, pero no hay ninguna");
 
             return;
         }
 
         for (DescargaControlador controlador : listaControladoresDescarga) {
-            controlador.eliminarTodasLasDescargas();
+            controlador.pararTodasLasDescargas();
         }
 
         contador = 0;
+        logger.trace("Reseteo del contador de descargas a 0");
         lbNumDescargas.setText(String.valueOf(contador));
 
         Alertas.mostrarInformacion("Ser han parado todas las descargas");
+
     }
 
 
@@ -143,10 +159,16 @@ public class AppControlador {
     @FXML
     public void eliminarTodasLasDescargas(Event event) {
 
+        // Si el boton pulsado en la alerta es cancelar, vuelve y no elimina
+        if (Alertas.mostrarConfirmación().get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+            logger.trace("Se cancela la eliminación de la descarga: " + rutaDescarga);
+            return;
+        }
+
 
         if (listaControladoresDescarga.isEmpty()) {
 
-            logger.trace("Se paran todas las descargas, pero la lista de descargas está vacía");
+            logger.trace("Se intentan eliminar todas las descargas, pero la lista de descargas está vacía");
 
             Alertas.mostrarInformacion("No hay ninguna descarga que eliminar");
             return;
@@ -159,6 +181,7 @@ public class AppControlador {
         layout.getChildren().clear();
         listaControladoresDescarga.clear();
         contador = 0;
+        logger.trace("Reseteo del contador de descargas a 0");
         lbNumDescargas.setText(String.valueOf(contador));
 
         Alertas.mostrarInformacion("Ser han eliminado todas las descargas");
@@ -169,8 +192,6 @@ public class AppControlador {
 
     @FXML
     public void verHistorial (Event event) {
-
-        logger.trace("Se visualiza el historial de la aplicación");
 
         try {
             FileInputStream fileInputStream = new FileInputStream("ejemplolog4j.log");
@@ -184,15 +205,17 @@ public class AppControlador {
 
             }
 
+            logger.trace("Se visualiza el historial de la aplicación");
+
             fileInputStream.close();
             bufferedReader.close();
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            logger.error("No se encuentra el fichero de historial");
+            Alertas.mostrarError("Error al buscar el fichero que contiene el historial");
+            logger.error("No se encuentra el fichero de historial " + e.fillInStackTrace());
         } catch (IOException e) {
-            logger.error("No se puede leer el fichero de historial correctamente");
-            e.printStackTrace();
+            logger.error("No se puede leer el fichero de historial correctamente " +e.fillInStackTrace());
+            Alertas.mostrarError("Error al leer el fichero que contiene el historial");
         }
 
     }
@@ -204,9 +227,17 @@ public class AppControlador {
 
 
 
-
-    private void aumentarContador() {
+    //public para poder usarlo en el controlador de descarga
+    public void aumentarContador() {
         contador++;
+    }
+    //public para poder usarlo en el controlador de descarga
+    protected void restarContador() {
+        contador--;
+    }
+    //public para poder usarlo en el controlador de descarga
+    public void resetearContador () {
+        contador = 0;
     }
 
     private void limpiarCajaURL_PedirFoco() {

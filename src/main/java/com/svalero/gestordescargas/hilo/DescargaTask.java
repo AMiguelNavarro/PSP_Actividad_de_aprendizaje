@@ -1,16 +1,12 @@
 package com.svalero.gestordescargas.hilo;
 
-import com.svalero.gestordescargas.controlador.AppControlador;
-import com.svalero.gestordescargas.utilidades.Alertas;
+
 import javafx.concurrent.Task;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -25,10 +21,6 @@ public class DescargaTask extends Task<Void> {
 
 
 
-
-
-
-
     public DescargaTask(String url, String rutaDescarga) throws MalformedURLException {
 
         logger.trace("Descarga creada");
@@ -39,7 +31,15 @@ public class DescargaTask extends Task<Void> {
 
     public boolean isPausado() { return pausado;}
 
-    public void setPausado(boolean pausado) {  this.pausado = pausado;}
+    public void setPausado(boolean pausado) {
+
+        this.pausado = pausado;
+        if (pausado) {
+            logger.trace("Se duerme el hilo hasta que se reanude la descarga");
+        } else {
+            logger.trace("Se reanuda el hilo de descarga");
+        }
+    }
 
     @Override
     protected Void  call() throws Exception {
@@ -60,7 +60,7 @@ public class DescargaTask extends Task<Void> {
 
         int bytesLeidos;
         int totalLeido = 0;
-//        int anterior = 0;
+
         while ((bytesLeidos = bis.read(dataBuffer,0,1024)) != -1) {
 
             if (pausado) {
@@ -75,12 +75,6 @@ public class DescargaTask extends Task<Void> {
                 updateProgress(progresoDescarga,1);
                 return null;
             }
-
-//            long tiempo = System.currentTimeMillis();
-//            if (tiempo % 100 == 0) {
-//                double velocidad = (double) (totalLeido-anterior) / 1048576;
-//                anterior = totalLeido;
-//            }
 
             progresoDescarga = (double) totalLeido / tamanioFichero;
             updateProgress(progresoDescarga, 1);
@@ -102,15 +96,5 @@ public class DescargaTask extends Task<Void> {
         return null;
     }
 
-
-
-
-    public void mensajeDescargando(int porcentaje, int tamanioFichero) {
-
-        String mensaje;
-
-        mensaje = "Descargando --> " + porcentaje + " % de " + tamanioFichero/1000000 + " Kb";
-
-    }
 }
 

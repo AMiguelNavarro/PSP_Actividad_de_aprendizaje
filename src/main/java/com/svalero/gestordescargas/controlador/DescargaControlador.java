@@ -24,7 +24,7 @@ public class DescargaControlador {
 
     private String url, rutaDescarga;
     private DescargaTask descargaTask;
-    private enum Accion {CANCELAR, ELIMINAR, ELIMINAR_TODO, PARAR_TODO}
+    private enum Accion {CANCELAR, ELIMINAR, ELIMINAR_TODO}
     private Accion accion;
     private AppControlador appControlador;
 
@@ -62,13 +62,16 @@ public class DescargaControlador {
             String rutaSeleccionada = fichero.getAbsolutePath();
             try {
                 descargaTask = new DescargaTask(url, rutaSeleccionada);
+                logger.trace("Se inicia la descarga desde la nueva ruta");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                logger.error("URL mal formada " + e.fillInStackTrace());
             }
 
 
             if (fichero == null) {
                 Alertas.mostrarError("La ruta no puede estar vacia");
+                logger.trace("Ruta de descarga vacía");
                 return;
             }
 
@@ -84,6 +87,7 @@ public class DescargaControlador {
             lbURL.setText(url);
 
             modoDescarga(true);
+            cbRutaDescarga.setDisable(true);
 
         descargaTask.stateProperty().addListener((observableValue, estadoAntiguo, estadoNuevo) -> {
 
@@ -106,19 +110,14 @@ public class DescargaControlador {
 
                         break;
 
-                    case ELIMINAR_TODO:
-                        logger.trace("Se han eliminado y cancelado todas las descargas");
-                        break;
-
-                    case PARAR_TODO:
-                        logger.trace("Se han parado todas las descargas");
-                        lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
-                        break;
-
                     case ELIMINAR:
                         Parent pantalla = btEliminar.getParent().getParent();
                         appControlador.layout.getChildren().remove(pantalla);
 
+                        break;
+
+                    case ELIMINAR_TODO:
+                        logger.trace("Se eliminan todas las descargas");
                         break;
                 }
 
@@ -152,7 +151,7 @@ public class DescargaControlador {
 
         modoDescarga(true);
 
-        appControlador.contador++;
+        appControlador.aumentarContador();
         appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
     }
@@ -162,26 +161,10 @@ public class DescargaControlador {
     @FXML
     public void eliminarDescarga(Event event) {
 
-        logger.trace("Se ha eliminado una descarga individual");
-
         // Si el boton pulsado en la alerta es cancelar, vuelve y no elimina
         if (Alertas.mostrarConfirmación().get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+            logger.trace("Se cancela la eliminación de la descarga: " + url);
             return;
-        }
-
-        if (!descargaTask.isCancelled()){
-
-            appControlador.contador--;
-
-            if (appControlador.contador < 0) {
-                appControlador.contador = 0;
-            }
-            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
-
-        } else {
-
-            appControlador.contador++;
-
         }
 
         if (descargaTask == null || descargaTask.isDone()) {
@@ -190,8 +173,12 @@ public class DescargaControlador {
             Parent pantalla = btEliminar.getParent().getParent();
             appControlador.layout.getChildren().remove(pantalla);
 
-            appControlador.contador--;
+            appControlador.restarContador();
+            if (appControlador.contador < 0) {
+                appControlador.resetearContador();
+            }
             appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+            return;
 
         } else {
 
@@ -199,6 +186,18 @@ public class DescargaControlador {
             descargaTask.cancel();
 
         }
+
+        if (!descargaTask.isCancelled()) {
+
+            appControlador.restarContador();
+
+            if (appControlador.contador < 0) {
+                appControlador.resetearContador();
+            }
+            appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+        }
+
+        logger.trace("Se ha eliminado la descarga: " + url);
 
     }
 
@@ -212,7 +211,10 @@ public class DescargaControlador {
 
         lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
 
-        appControlador.contador--;
+        appControlador.restarContador();
+        if (appControlador.contador < 0) {
+            appControlador.resetearContador();
+        }
         appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
         modoPararDescarga(true);
@@ -229,9 +231,9 @@ public class DescargaControlador {
 
         if (!descargaTask.isCancelled()){
 
-            appControlador.contador--;
+            appControlador.restarContador();
             if (appControlador.contador < 0) {
-                appControlador.contador = 0;
+                appControlador.resetearContador();
             }
             appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
 
@@ -251,8 +253,6 @@ public class DescargaControlador {
 
     public void eliminarTodasLasDescargas() {
 
-        logger.trace("Se procede a eliminar todas las descargas");
-
         accion = Accion.ELIMINAR_TODO;
 
         if (descargaTask == null) {
@@ -267,14 +267,20 @@ public class DescargaControlador {
 
     public void pararTodasLasDescargas() {
 
-        logger.trace("Se procede a parar todas las descargas");
-
-        accion = Accion.PARAR_TODO;
+        logger.trace("Se paran todas las descargas");
 
         if (descargaTask == null) {
             return;
         }
-        descargaTask.cancel();
+
+        descargaTask.setPausado(true);
+
+        lbProgreso.setText("Descarga Parada --> " + Math.round(descargaTask.getProgress() * 100) + " %");
+
+        appControlador.contador--;
+        appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
+        modoPararDescarga(true);
     }
 
 
@@ -318,15 +324,6 @@ public class DescargaControlador {
     public void modoDescargaFinalizada (boolean activado) {
         btParar.setDisable(activado);
         btCancelar.setDisable(activado);
-    }
-
-    public void modoReanudarDescarga (boolean activado) {
-        btReanudar.setDisable(activado);
-        btIniciar.setDisable(activado);
-
-        btCancelar.setDisable(!activado);
-        btEliminar.setDisable(!activado);
-        btParar.setDisable(!activado);
     }
 
 }
