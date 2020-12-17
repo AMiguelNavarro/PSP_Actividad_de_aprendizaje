@@ -132,6 +132,9 @@ public class DescargaControlador {
                 lbProgreso.setText("Descarga finalizada!! --> 100 %");
                 pbProgreso.setStyle("-fx-accent: green;");
 
+                appControlador.restarContador();
+                appControlador.lbNumDescargas.setText(String.valueOf(appControlador.contador));
+
             }
 
         });
@@ -302,14 +305,16 @@ public class DescargaControlador {
     public void modoDescarga (boolean activado) {
         btIniciar.setDisable(activado);
         btReanudar.setDisable(activado);
+        btEliminar.setDisable(activado);
 
         btParar.setDisable(!activado);
         btCancelar.setDisable(!activado);
-        btEliminar.setDisable(!activado);
+
     }
 
     public void modoPararDescarga (boolean activado) {
         btReanudar.setDisable(!activado);
+        btEliminar.setDisable(!activado);
 
         btParar.setDisable(activado);
     }

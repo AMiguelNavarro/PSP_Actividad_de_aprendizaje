@@ -478,3 +478,123 @@
 12:17:35.720 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Reseteo del contador de descargas a 0
 12:17:49.019 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se intentan parar todas las descargas, pero no hay ninguna
 12:17:53.914 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se intentan eliminar todas las descargas, pero la lista de descargas está vacía
+12:27:10.149 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+12:27:40.104 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:27:42.903 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:27:42.903 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:31:33.541 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+12:31:50.148 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:31:51.601 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:31:51.601 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:31:54.089 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:31:54.094 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:31:57.482 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha cancelado una descarga de forma individual
+12:31:57.485 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz cancelada/parada
+12:32:55.613 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+12:33:15.547 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:33:16.105 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:33:16.106 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:33:18.329 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:33:18.334 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:33:20.882 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+12:33:20.882 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:33:23.391 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se reanuda el hilo de descarga
+12:33:26.235 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz cancelada/parada
+12:33:26.238 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha eliminado la descarga: https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:33:33.426 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se cancela la eliminación de la descarga: C:\Users\alber\Desktop\a.zip
+12:33:45.546 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:33:46.650 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:33:46.651 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:33:49.355 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Reseteo del contador de descargas a 0
+12:33:55.671 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:33:56.849 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:33:56.849 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:33:59.079 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:33:59.080 [Thread-5] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:34:00.606 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+12:34:00.607 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:34:02.391 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se reanuda el hilo de descarga
+12:34:04.371 [Thread-5] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descargahttps://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz cancelada/parada
+12:34:04.371 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha eliminado la descarga: https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:34:14.239 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:34:14.864 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:34:14.864 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:34:15.734 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:34:15.735 [Thread-6] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:34:17.187 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+12:34:17.188 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:34:19.236 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha eliminado la descarga: https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:35:23.564 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+12:35:38.171 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:35:38.809 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:35:38.809 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:35:40.145 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:35:40.150 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:35:42.741 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+12:35:42.742 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:36:40.037 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+12:36:51.401 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:36:52.464 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:36:52.465 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:36:54.137 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:36:54.143 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:36:56.463 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+12:36:56.464 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:36:59.078 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se reanuda el hilo de descarga
+12:37:00.868 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha parado una descarga individual
+12:37:00.868 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:37:06.318 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se ha cancelado una descarga de forma individual
+12:37:15.525 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:37:16.251 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:37:16.251 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:37:20.510 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:37:22.329 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:37:22.329 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:37:36.758 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:37:37.616 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:37:37.617 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:37:43.766 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:37:44.288 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:37:44.288 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:37:49.618 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\b.zip
+12:37:50.175 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:37:50.176 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:37:55.527 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\b.zip
+12:37:56.883 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se intenta descargar un archivo pero no se puede ya que hay 5 decargas pendientes
+12:38:00.422 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:38:00.424 [Thread-5] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:38:01.777 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:38:01.780 [Thread-6] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:38:03.597 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:38:03.600 [Thread-7] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:38:04.664 [Thread-5] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga finalizada
+12:38:06.650 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se paran todas las descargas
+12:38:06.651 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:38:06.652 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se paran todas las descargas
+12:38:06.652 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se paran todas las descargas
+12:38:06.652 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se paran todas las descargas
+12:38:06.652 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:38:06.653 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se paran todas las descargas
+12:38:06.653 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:38:06.653 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.DescargaControlador - Se paran todas las descargas
+12:38:06.653 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se duerme el hilo hasta que se reanude la descarga
+12:38:06.654 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Reseteo del contador de descargas a 0
+12:38:17.318 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se reanuda el hilo de descarga
+12:38:21.869 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se reanuda el hilo de descarga
+12:38:23.633 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se reanuda el hilo de descarga
+12:38:24.030 [Thread-7] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga finalizada
+12:38:26.006 [Thread-6] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga finalizada
+12:38:35.904 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Reseteo del contador de descargas a 0
+12:38:37.669 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:38:37.669 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:38:38.990 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:38:38.991 [Thread-8] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:38:41.474 [Thread-8] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga finalizada
+12:39:52.209 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.SplashScreenControlador - Se inicia la aplicación desde el Splash Screen
+12:40:03.240 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Ruta de descarga seleccionada: C:\Users\alber\Desktop\a.zip
+12:40:04.010 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade una descarga
+12:40:04.010 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Se añade un controlador a la lista de controladores
+12:40:05.137 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga creada
+12:40:05.143 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Se ha iniciado la descarga de https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.1.tar.xz
+12:40:12.640 [Thread-4] TRACE com.svalero.gestordescargas.hilo.DescargaTask - Descarga finalizada
+12:40:17.522 [JavaFX Application Thread] TRACE com.svalero.gestordescargas.controlador.AppControlador - Reseteo del contador de descargas a 0
